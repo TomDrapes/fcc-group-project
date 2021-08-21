@@ -15,7 +15,9 @@ import MoreVertIcon from "@material-ui/icons/MoreVert"
 import FavoriteIcon from "@material-ui/icons/Favorite"
 import ShareIcon from "@material-ui/icons/Share"
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
+import {Link} from "react-router-dom"
 import './App.css';
+import { isTemplateExpression } from 'typescript';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -74,10 +76,13 @@ export const GameInfoCard = (props: Props) => {
         title={heading}
         subheader={subHeading}
       />
-      <CardMedia
-        className={classes.media}
-        image={imgUrl}
-      />
+      <Link to={`/${heading.toLowerCase()}`}>
+        <CardMedia
+          className={classes.media}
+          image={imgUrl}
+        />
+      </Link>
+
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           {description}

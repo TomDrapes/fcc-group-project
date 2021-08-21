@@ -2133,6 +2133,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/history@*":
+  "integrity" "sha512-MUc6zSmU3tEVnkQ78q0peeEjKWPUADMlC/t++2bI8WnAG2tvYRPIgHG8lWkXwqc8MsUF6Z2MOf+Mh5sazOmhiQ=="
+  "resolved" "https://registry.npmjs.org/@types/history/-/history-4.7.9.tgz"
+  "version" "4.7.9"
+
 "@types/html-minifier-terser@^5.0.0":
   "integrity" "sha512-h4lTMgMJctJybDp8CQrxTUiiYmedihHWkjnF/8Pxseu2S6Nlfcy8kwboQ8yejh456rP2yWoEVm1sS/FVsfM48w=="
   "resolved" "https://registry.npmjs.org/@types/html-minifier-terser/-/html-minifier-terser-5.1.2.tgz"
@@ -2233,6 +2238,23 @@
   "resolved" "https://registry.npmjs.org/@types/react-dom/-/react-dom-17.0.9.tgz"
   "version" "17.0.9"
   dependencies:
+    "@types/react" "*"
+
+"@types/react-router-dom@^5.1.8":
+  "integrity" "sha512-03xHyncBzG0PmDmf8pf3rehtjY0NpUj7TIN46FrT5n1ZWHPZvXz32gUyNboJ+xsL8cpg8bQVLcllptcQHvocrw=="
+  "resolved" "https://registry.npmjs.org/@types/react-router-dom/-/react-router-dom-5.1.8.tgz"
+  "version" "5.1.8"
+  dependencies:
+    "@types/history" "*"
+    "@types/react" "*"
+    "@types/react-router" "*"
+
+"@types/react-router@*", "@types/react-router@^5.1.16":
+  "integrity" "sha512-8d7nR/fNSqlTFGHti0R3F9WwIertOaaA1UEB8/jr5l5mDMOs4CidEgvvYMw4ivqrBK+vtVLxyTj2P+Pr/dtgzg=="
+  "resolved" "https://registry.npmjs.org/@types/react-router/-/react-router-5.1.16.tgz"
+  "version" "5.1.16"
+  dependencies:
+    "@types/history" "*"
     "@types/react" "*"
 
 "@types/react-transition-group@^4.2.0":
@@ -10357,7 +10379,20 @@
   "resolved" "https://registry.npmjs.org/react-refresh/-/react-refresh-0.8.3.tgz"
   "version" "0.8.3"
 
-"react-router@^5.2.0":
+"react-router-dom@^5.2.0":
+  "integrity" "sha512-gxAmfylo2QUjcwxI63RhQ5G85Qqt4voZpUXSEqCwykV0baaOTQDR1f0PmY8AELqIyVc0NEZUj0Gov5lNGcXgsA=="
+  "resolved" "https://registry.npmjs.org/react-router-dom/-/react-router-dom-5.2.0.tgz"
+  "version" "5.2.0"
+  dependencies:
+    "@babel/runtime" "^7.1.2"
+    "history" "^4.9.0"
+    "loose-envify" "^1.3.1"
+    "prop-types" "^15.6.2"
+    "react-router" "5.2.0"
+    "tiny-invariant" "^1.0.2"
+    "tiny-warning" "^1.0.0"
+
+"react-router@^5.2.0", "react-router@5.2.0":
   "integrity" "sha512-smz1DUuFHRKdcJC0jobGo8cVbhO3x50tCL4icacOlcwDOEQPq4TMqwx3sY1TP+DvtTgz4nm3thuo7A+BK2U0Dw=="
   "resolved" "https://registry.npmjs.org/react-router/-/react-router-5.2.0.tgz"
   "version" "5.2.0"
