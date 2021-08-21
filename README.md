@@ -20,3 +20,9 @@ Inside the `fcc` directory run:
 `npm start`
 
 This will start the app in your browser on localhost.
+
+### Libraries for reference
+
+- Material UI: https://material-ui.com/getting-started/installation/
+- React router: https://reactrouter.com/web/api/Switch
+- React: https://reactjs.org/docs/hooks-intro.html
