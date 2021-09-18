@@ -19,6 +19,19 @@ app.use(express.urlencoded({ extended: true })); // don't know if extended needs
 
 const port = process.env.PORT || 5000;
 
+//Socket.io
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+let clients = [];
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('test', function(msg){
+    console.log('working: ', msg);
+  });
+});
+//io.listen(9000)
+http.listen(9000);
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
