@@ -1,50 +1,24 @@
-const express = require("express");
-require("dotenv").config();
-
-const mongoose = require("mongoose");
-
-// mongoose
-//   .connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-//   .then((data) => {
-//     // don't know what userNewUrlParser does
-//     console.log("connected to Database");
-//   })
-//   .catch((err) => {
-//     console.log("ERROR CONNECTING TO Mongo! " + err);
-//   });
-
+const express = require('express');
 const app = express();
-app.use(express.json()); // this is needed for fetch calls from app
-app.use(express.urlencoded({ extended: true })); // don't know if extended needs to be true
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
 
-const port = process.env.PORT || 5000;
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
+});
 
-//Socket.io
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
-let clients = [];
-io.on('connection', function(socket){
+io.on('connection', (socket) => {
   console.log('a user connected');
-  socket.on('test', function(msg){
-    console.log('working: ', msg);
+  socket.on('test', (msg) => {
+    console.log('msg: ', msg);
+    socket.broadcast.emit('working', 'yo')
   });
 });
-//io.listen(9000)
-http.listen(9000);
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
+server.listen(3000, () => {
+  console.log('listening on *:3000');
 });
 
-if (process.env.NODE_ENV === "production") {
-  // Serve any static files
-  app.use(express.static(path.join(__dirname, "../fcc/build")));
 
-  // Handle React routing, return all requests to React app
-  app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "../fcc/build", "index.html"));
-  });
-}
-app.listen(process.env.PORT || port, () =>
-  console.log(`server is running on ${port}`)
-);
