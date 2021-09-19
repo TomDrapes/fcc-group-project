@@ -1,23 +1,22 @@
-import React, {useState} from 'react';
+import React, { useState } from "react";
 import {
-   Card,
-   CardHeader,
-   Avatar,
-   IconButton,
-   CardMedia,
-   Typography,
-   CardActions,
-   CardContent,
-   Collapse,
-   makeStyles,
-} from '@material-ui/core'
-import MoreVertIcon from "@material-ui/icons/MoreVert"
-import FavoriteIcon from "@material-ui/icons/Favorite"
-import ShareIcon from "@material-ui/icons/Share"
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore"
-import {Link} from "react-router-dom"
-import './App.css';
-import { isTemplateExpression } from 'typescript';
+  Card,
+  CardHeader,
+  Avatar,
+  IconButton,
+  CardMedia,
+  Typography,
+  CardActions,
+  CardContent,
+  Collapse,
+  makeStyles,
+} from "@material-ui/core";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import ShareIcon from "@material-ui/icons/Share";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { Link } from "react-router-dom";
+import "./App.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,17 +24,17 @@ const useStyles = makeStyles((theme) => ({
   },
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: "56.25%", // 16:9
   },
   expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
+    transform: "rotate(0deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
       duration: theme.transitions.duration.shortest,
     }),
   },
   expandOpen: {
-    transform: 'rotate(180deg)',
+    transform: "rotate(180deg)",
   },
   avatar: {
     backgroundColor: "red",
@@ -50,7 +49,7 @@ interface Props {
 }
 
 export const GameInfoCard = (props: Props) => {
-  const {heading, subHeading, description, imgUrl} = props;
+  const { heading, subHeading, description, imgUrl } = props;
 
   const classes = useStyles();
 
@@ -77,10 +76,7 @@ export const GameInfoCard = (props: Props) => {
         subheader={subHeading}
       />
       <Link to={`/${heading.toLowerCase()}`}>
-        <CardMedia
-          className={classes.media}
-          image={imgUrl}
-        />
+        <CardMedia className={classes.media} image={imgUrl} />
       </Link>
 
       <CardContent>
@@ -106,11 +102,9 @@ export const GameInfoCard = (props: Props) => {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>Method:</Typography>
-          <Typography paragraph>
-            Add more info here
-          </Typography>
+          <Typography paragraph>Add more info here</Typography>
         </CardContent>
       </Collapse>
     </Card>
-  )
-}
+  );
+};
