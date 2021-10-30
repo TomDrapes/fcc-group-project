@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const axios = require("axios");
 require("dotenv").config();
 
 const app = express();
@@ -18,7 +19,12 @@ const io = require("socket.io")(http, {
   },
 });
 
+let INTERVAL = 120;
+let endTime = null;
+
 let clients = [];
+let players = []; // [{name: 'xxxx', score: 0}, ]
+let question = null;
 
 const handleAnswer = (answer) => {
 
@@ -29,9 +35,55 @@ io.on("connection", function (socket) {
     console.log("working: ", msg);
     socket.broadcast.emit('click', 'yo')
   });
+
+
   socket.on("answer", (answer) => {
     console.log("Player answered correctly: ", answer)
     socket.broadcast.emit("playerGuess", answer ? "This player is smart" : "This player needs to go back to school")
+  })
+
+  // get current game data: question, answer, end time, player list
+  socket.on("getGame", (name) => 
+  {
+    // if user first enter the game, then add to the list of players
+    if (name != undefined)
+    {
+      players.push({name: name, score: 0});
+    }
+
+    if (endTime == null)
+    {
+      let now = new Date();
+      endTime = new Date(now.getTime() + INTERVAL*10000);
+    }
+      
+
+    axios
+      .get("https://opentdb.com/api.php?amount=10&type=multiple")
+      .then((res) =>
+      {
+        let results = res.data.results;
+        // get the first question info
+        question = results[0];
+
+        let retData = question;
+
+        retData['answers'] = [...question.incorrect_answers, question.correct_answer];
+        retData['players'] = players;
+        retData['endTime'] = endTime;
+        console.log('send broadcast')
+        console.log(retData);
+        socket.broadcast.emit("setGame", retData);
+      })
+      .catch((err) => {})
+      .finally(() => 
+      {
+        console.log("Get game");
+      })
+      
+
+    
+    
   })
 });
 
