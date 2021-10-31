@@ -43,7 +43,7 @@ io.on("connection", function (socket) {
   })
 
   // get current game data: question, answer, end time, player list
-  socket.on("getGame", (name) => 
+  socket.on("getGame", (name) =>
   {
     // if user first enter the game, then add to the list of players
     if (name != undefined)
@@ -56,7 +56,7 @@ io.on("connection", function (socket) {
       let now = new Date();
       endTime = new Date(now.getTime() + INTERVAL*10000);
     }
-      
+
 
     axios
       .get("https://opentdb.com/api.php?amount=10&type=multiple")
@@ -73,17 +73,17 @@ io.on("connection", function (socket) {
         retData['endTime'] = endTime;
         console.log('send broadcast')
         console.log(retData);
-        socket.broadcast.emit("setGame", retData);
+        socket.emit("setGame", retData);
       })
       .catch((err) => {})
-      .finally(() => 
+      .finally(() =>
       {
         console.log("Get game");
       })
-      
 
-    
-    
+
+
+
   })
 });
 
